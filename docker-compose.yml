@@ -1,18 +1,4 @@
 services:
-  streaming-audio:
-    image:
-    ports:
-      - "8080:80"
-
-  postgres-db:
-    image: postgres:latest
-    container_name: postgresql
-    volumes:
-      - ./data/db/data:/var/lib/postgresql/data
-    env_file:
-      - ./dotenv_files/.env
-    restart: always  
-
   nginx:
     image: nginx:latest
     ports:
@@ -20,3 +6,14 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nodejs/public:/usr/share/nginx/html
+
+  postgresql:
+    container_name: postgresql
+    image: postgres:latest
+    volumes:
+      - ./data/db/data:/var/lib/postgresql/data
+    env_file:
+      - ./dotenv_files/.env
+    restart: always
+
+
