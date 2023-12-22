@@ -1,17 +1,12 @@
-# Use a imagem base do Node.js mais recente
-FROM node:latest
+FROM node:alpine
 
-# Define o diretório de trabalho no contêiner
-WORKDIR /app
+WORKDIR /usr/app
 
-# Copia o arquivo package.json e package-lock.json (se existir) para o contêiner
 COPY package*.json ./
-
-# Instala as dependências do projeto
 RUN npm install
 
-# Copia os arquivos do código-fonte para o contêiner
-COPY . .
+COPY . . 
 
-# Define o comando para iniciar o servidor Node.js
-CMD ["npm", "start"]
+EXPOSE 3000
+
+CMD [ "npm", "start" ]
